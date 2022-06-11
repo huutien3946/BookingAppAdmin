@@ -28,7 +28,7 @@ import java.util.List;
 import java.util.Map;
 
 public class AddStaff extends SideBar {
-
+// test lần 1
     private Button backButton, sign_upButton;
     private EditText edt_HoTen, edt_Email, edt_Sdt, edt_MatKhau, edt_XacNhanMK;
     private ProgressDialog progressDialog;
