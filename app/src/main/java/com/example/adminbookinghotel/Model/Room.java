@@ -1,4 +1,4 @@
-package com.example.adminbookinghotel;
+package com.example.adminbookinghotel.Model;
 
 import java.io.Serializable;
 

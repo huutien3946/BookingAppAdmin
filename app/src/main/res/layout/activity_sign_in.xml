@@ -7,7 +7,7 @@
     android:background="@color/PrimaryColor"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".SignIn">
+    tools:context=".Login.SignIn">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profile_image"

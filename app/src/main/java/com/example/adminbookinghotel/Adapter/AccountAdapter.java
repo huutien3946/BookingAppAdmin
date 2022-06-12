@@ -1,4 +1,4 @@
-package com.example.adminbookinghotel;
+package com.example.adminbookinghotel.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.apachat.swipereveallayout.core.SwipeLayout;
+import com.example.adminbookinghotel.R;
+import com.example.adminbookinghotel.Model.UserAdmin;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

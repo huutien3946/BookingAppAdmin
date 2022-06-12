@@ -1,4 +1,4 @@
-package com.example.adminbookinghotel;
+package com.example.adminbookinghotel.Model;
 
 public class UserCustomer {
     private String email, phone, name;

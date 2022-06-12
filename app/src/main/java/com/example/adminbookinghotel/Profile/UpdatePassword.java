@@ -1,7 +1,6 @@
-package com.example.adminbookinghotel;
+package com.example.adminbookinghotel.Profile;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -12,6 +11,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.adminbookinghotel.R;
+import com.example.adminbookinghotel.SideBar;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -24,8 +25,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
 public class UpdatePassword extends SideBar {
 
@@ -36,7 +35,6 @@ public class UpdatePassword extends SideBar {
     private Button btn_Back, btn_Update;
     private TextInputEditText oldpass, newpass, verifypass;
     private FirebaseAuth firebaseAuth;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -1,9 +1,8 @@
-package com.example.adminbookinghotel;
+package com.example.adminbookinghotel.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +16,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.apachat.swipereveallayout.core.SwipeLayout;
 import com.apachat.swipereveallayout.core.ViewBinder;
+import com.example.adminbookinghotel.R;
+import com.example.adminbookinghotel.Model.Room;
+import com.example.adminbookinghotel.UpdateRoom;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,8 +29,6 @@ import com.squareup.picasso.Picasso;
 import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
-
-import javax.xml.transform.Source;
 
 public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder> {
 

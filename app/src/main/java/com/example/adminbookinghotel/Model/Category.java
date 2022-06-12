@@ -1,4 +1,4 @@
-package com.example.adminbookinghotel;
+package com.example.adminbookinghotel.Model;
 
 public class Category {
     private String name;

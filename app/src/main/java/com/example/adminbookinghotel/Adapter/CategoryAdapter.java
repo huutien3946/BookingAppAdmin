@@ -1,4 +1,4 @@
-package com.example.adminbookinghotel;
+package com.example.adminbookinghotel.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,6 +9,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.example.adminbookinghotel.Model.Category;
+import com.example.adminbookinghotel.R;
 
 import java.util.List;
 

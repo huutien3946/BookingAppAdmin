@@ -16,6 +16,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.adminbookinghotel.Login.SignIn;
+import com.example.adminbookinghotel.Model.UserAdmin;
+import com.example.adminbookinghotel.Profile.Account;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -30,7 +33,7 @@ public class SideBar extends AppCompatActivity implements NavigationView.OnNavig
     public static final  String userId = FirebaseAuth.getInstance().getUid();
     public static final  String userEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
     private String permission ;
-    DrawerLayout mDraweLayout;
+    public DrawerLayout mDraweLayout;
     private NavigationView navigationView;
     private Toolbar toolbar;
     private TextView username, username_gmail;
@@ -128,8 +131,14 @@ public class SideBar extends AppCompatActivity implements NavigationView.OnNavig
                 break;
 
             case R.id.list_admin:
-                Intent intent2 = new Intent(this, AccountAdmin.class);
+                Intent intent2 = new Intent(this, ListAdmin.class);
                 startActivity(intent2);
+                this.finish();
+                break;
+
+            case R.id.list_customer:
+                Intent intent3 = new Intent(this, ListCustomer.class);
+                startActivity(intent3);
                 this.finish();
                 break;
 

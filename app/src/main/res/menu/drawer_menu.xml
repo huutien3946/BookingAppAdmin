@@ -25,6 +25,11 @@
                 android:id="@+id/list_admin"
                 android:icon="@drawable/add2"
                 android:title="List Admin" />
+
+            <item
+                android:id="@+id/list_customer"
+                android:icon="@drawable/add2"
+                android:title="List Customer" />
         </menu>
     </item>
 
