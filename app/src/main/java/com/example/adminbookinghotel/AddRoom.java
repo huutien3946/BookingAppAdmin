@@ -51,16 +51,9 @@ public class AddRoom extends AppCompatActivity {
     private Uri mImageUri;
     private ProgressDialog progressDialog;
     private DatabaseReference reference;
-
     private Spinner spnFloor, spnType, spnRoomNb;
     private CategoryAdapter floorAdapter,typeAdapter,roomNbAdapter;
-
     private String  strFloor, strTypeRoom, strRoomNumber;
-
-
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -123,8 +123,8 @@ public class SignIn extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Boolean exist = false;
                 for(DataSnapshot child : snapshot.getChildren()){
-                    User user = child.getValue(User.class);
-                    if(user.getEmail().equals(strEmail)){
+                    UserAdmin userAdmin = child.getValue(UserAdmin.class);
+                    if(userAdmin.getEmail().equals(strEmail)){
                         exist = true;
                         break;
                     }

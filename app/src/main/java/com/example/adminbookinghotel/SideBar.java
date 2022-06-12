@@ -10,7 +10,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -54,36 +53,10 @@ public class SideBar extends AppCompatActivity implements NavigationView.OnNavig
         progressDialog = new ProgressDialog(SideBar.this);
         progressDialog.setMessage("Log Out...");
 
-
-
-//        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("admin");
-//        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                User user = snapshot.getValue(User.class);
-//                for (DataSnapshot child : snapshot.getChildren()) {
-//                    if (child.getKey().equals(userId)) {
-//                        user = child.getValue(User.class);
-//                        assert user != null;
-//                        permission = user.getPermission();
-//                    }
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-
         initNavigationDrawer();
 
 
         disPlayProfile();
-//        if(permission.equals("2")){
-//            permissionStaff();
-//        }
-
     }
 
     private void disPlayProfile() {
@@ -94,21 +67,21 @@ public class SideBar extends AppCompatActivity implements NavigationView.OnNavig
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                User user = snapshot.getValue(User.class);
+                UserAdmin userAdmin = snapshot.getValue(UserAdmin.class);
                 for (DataSnapshot child : snapshot.getChildren()) {
                     if (child.getKey().equals(userId)) {
-                        user = child.getValue(User.class);
-                        assert user != null;
-                        username_gmail.setText(user.getEmail());
-                        username.setText(user.getName());
-                        permission = user.getPermission();
-                        if (user.getImage() == null) {
+                        userAdmin = child.getValue(UserAdmin.class);
+                        assert userAdmin != null;
+                        username_gmail.setText(userAdmin.getEmail());
+                        username.setText(userAdmin.getName());
+                        permission = userAdmin.getPermission();
+                        if (userAdmin.getImage() == null) {
                             Drawable drawable = getResources().getDrawable(R.drawable.avatar);
                             profile_image.setImageDrawable(drawable);
                         } else {
-                            Picasso.get().load(user.getImage()).into(profile_image);
+                            Picasso.get().load(userAdmin.getImage()).into(profile_image);
                         }
-                        String permission =  user.getPermission();
+                        String permission =  userAdmin.getPermission();
                         if(permission.equals("2")){
                             permissionStaff();
                         }
@@ -153,6 +126,14 @@ public class SideBar extends AppCompatActivity implements NavigationView.OnNavig
                 startActivity(intent1);
                 this.finish();
                 break;
+
+            case R.id.list_admin:
+                Intent intent2 = new Intent(this, AccountAdmin.class);
+                startActivity(intent2);
+                this.finish();
+                break;
+
+
 
             case R.id.list_room:
                 startActivity(new Intent(this,HomeAdmin.class));

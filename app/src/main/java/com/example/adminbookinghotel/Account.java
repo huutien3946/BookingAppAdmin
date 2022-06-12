@@ -2,11 +2,9 @@ package com.example.adminbookinghotel;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -189,20 +187,20 @@ public class Account extends SideBar {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                User user ;
+                UserAdmin userAdmin;
                 for (DataSnapshot child : snapshot.getChildren()) {
                     if (child.getKey().equals(userId)) {
-                        user = child.getValue(User.class);
-                        assert user != null;
-                        edt_email.setText(user.getEmail());
-                        edt_phone.setText(user.getPhone());
-                        edt_name.setText(user.getName());
-                        if (user.getImage() == null) {
+                        userAdmin = child.getValue(UserAdmin.class);
+                        assert userAdmin != null;
+                        edt_email.setText(userAdmin.getEmail());
+                        edt_phone.setText(userAdmin.getPhone());
+                        edt_name.setText(userAdmin.getName());
+                        if (userAdmin.getImage() == null) {
                             Drawable drawable = getResources().getDrawable(R.drawable.avatar);
                             profile_image.setImageDrawable(drawable);
                         } else {
 //                            Glide.with(requireActivity()).load(image).into(profile_image);
-                            Picasso.get().load(user.getImage()).fit().centerCrop().into(profile_image);
+                            Picasso.get().load(userAdmin.getImage()).fit().centerCrop().into(profile_image);
                         }
                     }
                 }

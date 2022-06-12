@@ -1,13 +1,13 @@
 package com.example.adminbookinghotel;
 
-public class User {
+public class UserAdmin {
     private String email, phone, name,image, permission;
 
 
-    public User() {
+    public UserAdmin() {
     }
 
-    public User(String email, String phone, String name, String image, String permission) {
+    public UserAdmin(String email, String phone, String name, String image, String permission) {
         this.email = email;
         this.phone = phone;
         this.name = name;
