@@ -1,19 +1,18 @@
 package com.example.adminbookinghotel.Model;
 
-public class Category {
+public class TypeRoom {
     private String type;
 
-    public Category() {
+    public TypeRoom() {
     }
 
-    public Category(String type) {
+    public TypeRoom(String type) {
         this.type = type;
     }
 
     public String getType() {
         return type;
     }
-
     public void setType(String type) {
         this.type = type;
     }

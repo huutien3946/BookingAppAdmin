@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Room implements Serializable {
     private String floor, typeroom, roomnumber, mota, price;
-            String image1,image2, image3, image4;
+    private String image1,image2, image3, image4;
 
     public Room() {
     }

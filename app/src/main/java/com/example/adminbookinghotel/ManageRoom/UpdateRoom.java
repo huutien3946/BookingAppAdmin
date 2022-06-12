@@ -1,5 +1,6 @@
 package com.example.adminbookinghotel.ManageRoom;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -23,8 +24,11 @@ import com.example.adminbookinghotel.Model.Room;
 import com.example.adminbookinghotel.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -87,8 +91,8 @@ public class UpdateRoom extends AppCompatActivity {
         spnType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                strTypeRoom = typeAdapter.getItem(position).getName();
-                showToast(typeAdapter.getItem(position).getName());
+                strTypeRoom = typeAdapter.getItem(position).getType();
+                showToast(typeAdapter.getItem(position).getType());
             }
 
             @Override
@@ -134,7 +138,6 @@ public class UpdateRoom extends AppCompatActivity {
                             mImageUri = data.getClipData().getItemAt(i).getUri();
                             Picasso.get().load(mImageUri).into(img_update_4);
                         }
-
                         ImageList.add(mImageUri);
                     }
 
@@ -172,9 +175,23 @@ public class UpdateRoom extends AppCompatActivity {
 
     private List<Category> getListType() {
         List<Category> list = new ArrayList<>();
-        list.add(new Category("Single bed"));
-        list.add(new Category("Double bed"));
+
+        DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference().child("typeroom");
+        reference1.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for( DataSnapshot child : snapshot.getChildren()){
+                    Category category = child.getValue(Category.class);
+                    list.add(category);
+                }
+                typeAdapter.notifyDataSetChanged();
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
         return list;
+
     }
 
     private void DisplayRoom() {
@@ -189,7 +206,7 @@ public class UpdateRoom extends AppCompatActivity {
         List<Category> list = new ArrayList<>();
         list= getListType();
         for(int i=0; i < list.size();i++){
-            if(typeAdapter.getItem(i).getName().equals(room.getTyperoom())){
+            if(typeAdapter.getItem(i).getType().equals(room.getTyperoom())){
                 spnType.setSelection(i);
             }
         }

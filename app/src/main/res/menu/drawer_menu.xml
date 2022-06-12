@@ -43,6 +43,10 @@
                 android:id="@+id/add_room"
                 android:icon="@drawable/add2"
                 android:title="Add Room" />
+            <item
+                android:id="@+id/add_type_room"
+                android:icon="@drawable/add2"
+                android:title="Add Type Room" />
         </menu>
     </item>
 

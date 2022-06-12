@@ -62,8 +62,8 @@ public class AddStaff extends SideBar {
         spnCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                permission = categoryAdapter.getItem(position).getName();
-                showToast(categoryAdapter.getItem(position).getName());
+                permission = categoryAdapter.getItem(position).getType();
+                showToast(categoryAdapter.getItem(position).getType());
             }
 
             @Override
@@ -168,7 +168,7 @@ public class AddStaff extends SideBar {
 
                             showToast("Account created successfully.");
                             startActivity(new Intent(AddStaff.this, ListRoom.class));
-                            finishAffinity();
+                            finish();
                         } else {
                             showToast("Create an account failed");
                         }

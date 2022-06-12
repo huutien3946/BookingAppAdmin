@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -21,7 +22,9 @@ import android.widget.Toast;
 import com.example.adminbookinghotel.Adapter.CategoryAdapter;
 import com.example.adminbookinghotel.Model.Category;
 import com.example.adminbookinghotel.Model.Room;
+import com.example.adminbookinghotel.Model.TypeRoom;
 import com.example.adminbookinghotel.R;
+import com.example.adminbookinghotel.SideBar;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
@@ -38,7 +41,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class AddRoom extends AppCompatActivity {
+public class AddRoom extends SideBar {
     private static final int PICK_IMAGE_REQUEST = 1;
     private ArrayList<Uri> ImageList = new ArrayList<Uri>();
 
@@ -56,20 +59,24 @@ public class AddRoom extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_room);
+
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View v = inflater.inflate(R.layout.activity_add_room, null, false);
+        mDraweLayout.addView(v, 0);
+
+//        setContentView(R.layout.activity_add_room);
 
         initUI();
 
         spnFloor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                strFloor = floorAdapter.getItem(position).getName();
-                showToast(floorAdapter.getItem(position).getName());
+                strFloor = floorAdapter.getItem(position).getType();
+                showToast(floorAdapter.getItem(position).getType());
                 List<Category> list = new ArrayList<>();
 
                 switch (strFloor){
                     case "1":
-
                         list.add(new Category("101"));
                         list.add(new Category("102"));
                         list.add(new Category("103"));
@@ -121,8 +128,8 @@ public class AddRoom extends AppCompatActivity {
         spnType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                strTypeRoom = typeAdapter.getItem(position).getName();
-                showToast(typeAdapter.getItem(position).getName());
+                strTypeRoom = typeAdapter.getItem(position).getType();
+                showToast(typeAdapter.getItem(position).getType());
             }
 
             @Override
@@ -137,12 +144,12 @@ public class AddRoom extends AppCompatActivity {
             }
         });
 
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
+//        backButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                onBackPressed();
+//            }
+//        });
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -211,6 +218,7 @@ public class AddRoom extends AppCompatActivity {
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Room updating please wait......");
 
+
         spnFloor = findViewById(R.id.spn_floor);
         floorAdapter = new CategoryAdapter(this, R.layout.item_selected, getListFloor());
         spnFloor.setAdapter(floorAdapter);
@@ -219,16 +227,30 @@ public class AddRoom extends AppCompatActivity {
         typeAdapter = new CategoryAdapter(this, R.layout.item_selected, getListType());
         spnType.setAdapter(typeAdapter);
 
-        backButton = findViewById(R.id.btn_back);
+//        backButton = findViewById(R.id.btn_back);
         addButton = findViewById(R.id.btn_addroom);
 
     }
 
     private List<Category> getListType() {
         List<Category> list = new ArrayList<>();
-        list.add(new Category("Single bed"));
-        list.add(new Category("Double bed"));
+
+        DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference().child("typeroom");
+        reference1.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for( DataSnapshot child : snapshot.getChildren()){
+                    Category category = child.getValue(Category.class);
+                    list.add(category);
+                }
+                typeAdapter.notifyDataSetChanged();
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
         return list;
+
     }
 
     private List<Category> getListFloor() {
@@ -249,8 +271,8 @@ public class AddRoom extends AppCompatActivity {
         spnRoomNb.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                strRoomNumber = roomNbAdapter.getItem(position).getName();
-                showToast(roomNbAdapter.getItem(position).getName());
+                strRoomNumber = roomNbAdapter.getItem(position).getType();
+                showToast(roomNbAdapter.getItem(position).getType());
             }
 
             @Override
