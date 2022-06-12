@@ -27,7 +27,6 @@ public class AccountAdmin extends SideBar {
     private AccountAdapter accountAdapter;
     private List<UserAdmin> listCustomer;
 
-    private TextView test;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

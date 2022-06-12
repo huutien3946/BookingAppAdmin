@@ -19,8 +19,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.core.UserWriteRecord;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,7 +31,7 @@ import java.util.Map;
 
 public class AddStaff extends SideBar {
 // test lần 1
-    private Button backButton, sign_upButton;
+    private Button  sign_upButton;
     private EditText edt_HoTen, edt_Email, edt_Sdt, edt_MatKhau, edt_XacNhanMK;
     private ProgressDialog progressDialog;
     private DatabaseReference databaseReference;
@@ -47,12 +49,6 @@ public class AddStaff extends SideBar {
         mDraweLayout.addView(v, 0);
 
         initUI();
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressed();
-            }
-        });
         sign_upButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -75,7 +71,6 @@ public class AddStaff extends SideBar {
     }
 
     private void initUI() {
-        backButton = findViewById(R.id.btn_back);
         sign_upButton = findViewById(R.id.btn_sign_up);
         edt_Email = findViewById(R.id.edt_Email);
         edt_Sdt = findViewById(R.id.edt_phone);
@@ -86,7 +81,6 @@ public class AddStaff extends SideBar {
         spnCategory = findViewById(R.id.spn_category);
         categoryAdapter = new CategoryAdapter(getApplicationContext(), R.layout.item_selected, getListCategory());
         spnCategory.setAdapter(categoryAdapter);
-
     }
 
     private List<Category> getListCategory() {

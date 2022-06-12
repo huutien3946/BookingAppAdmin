@@ -133,8 +133,6 @@ public class SideBar extends AppCompatActivity implements NavigationView.OnNavig
                 this.finish();
                 break;
 
-
-
             case R.id.list_room:
                 startActivity(new Intent(this,HomeAdmin.class));
                 this.finish();

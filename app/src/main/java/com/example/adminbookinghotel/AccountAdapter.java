@@ -5,9 +5,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.apachat.swipereveallayout.core.SwipeLayout;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
@@ -40,6 +48,30 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountV
         holder.email.setText(userAdmin.getEmail());
         holder.phone.setText(userAdmin.getPhone());
         holder.name.setText(userAdmin.getName());
+        holder.delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("admin");
+                reference.addListenerForSingleValueEvent(new ValueEventListener(){
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot child : snapshot.getChildren()) {
+                            UserAdmin userAdmin1 = child.getValue(UserAdmin.class);
+                            if (userAdmin1.getEmail().equals(userAdmin.getEmail())) {
+                                reference.child(child.getKey()).removeValue();
+                                Toast.makeText(v.getContext(), "Delete is successful", Toast.LENGTH_LONG).show();
+                                break;
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Toast.makeText(v.getContext(), "Warning!", Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+        });
 
     }
 
@@ -55,12 +87,16 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountV
         private TextView email;
         private TextView phone;
         private TextView name;
+        private TextView delete;
+        private SwipeLayout swipeLayout;
 
         public AccountViewHolder(@NonNull View itemView) {
             super(itemView);
+            swipeLayout = itemView.findViewById(R.id.swipeAccount);
             email = itemView.findViewById(R.id.tv_email_account);
             phone = itemView.findViewById(R.id.tv_phone_account);
             name = itemView.findViewById(R.id.tv_name_account);
+            delete = itemView.findViewById(R.id.delete_account);
         }
 
 

@@ -51,4 +51,6 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.8'
     //swipe
     implementation group: 'com.apachat', name: 'swipereveallayout-android', version: '1.1.2'
+
+
 }

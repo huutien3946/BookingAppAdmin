@@ -122,33 +122,34 @@ public class SignIn extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Boolean exist = false;
-                for(DataSnapshot child : snapshot.getChildren()){
+                for (DataSnapshot child : snapshot.getChildren()) {
                     UserAdmin userAdmin = child.getValue(UserAdmin.class);
-                    if(userAdmin.getEmail().equals(strEmail)){
+                    if (userAdmin.getEmail().equals(strEmail)) {
                         exist = true;
                         break;
                     }
                 }
                 progressDialog.dismiss();
-                if(exist == true){
+                if (exist == true) {
                     Intent intent = new Intent(SignIn.this, HomeAdmin.class);
                     startActivity(intent);
                     finish();
-                }
-                else{
+                } else {
                     showToast("Wrong UserName or Password!");
                 }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
             }
         });
     }
+
     private void initUi() {
         progressDialog = new ProgressDialog(this);
         btn_sign_in = findViewById(R.id.btn_DangNhap);
         textView = findViewById(R.id.tv_QuenMatKhau);
-        edt_MatKhau =  findViewById(R.id.edt_MatKhau);
+        edt_MatKhau = findViewById(R.id.edt_MatKhau);
         edt_Email = findViewById(R.id.edt_TenTaiKhoan);
 //        checkBox = findViewById(R.id.chbRememberMe);
 
@@ -164,7 +165,7 @@ public class SignIn extends AppCompatActivity {
 //        }
     }
 
-    private void showToast(String mess){
+    private void showToast(String mess) {
         Toast.makeText(this, mess, Toast.LENGTH_LONG).show();
     }
 

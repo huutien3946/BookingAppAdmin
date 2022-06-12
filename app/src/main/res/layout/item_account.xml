@@ -1,9 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.apachat.swipereveallayout.core.SwipeLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/swipeAccount"
     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:mode="same_level"
+    app:dragEdge="right"
+    android:background="@color/blanched_almond">
 
-    android:layout_height="wrap_content">
+    <!-- Your secondary layout here -->
+    <LinearLayout
+        android:id="@+id/layout_swipe"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
 
+        <TextView
+            android:id="@+id/delete_account"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:background="#d2691e"
+            android:layout_gravity="center"
+            android:text="Delete"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:textAlignment="center"/>
+
+    </LinearLayout>
+
+    <!-- Your main layout here -->
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -48,6 +75,6 @@
                 android:textSize="15dp" />
         </TableRow>
     </TableLayout>
+</com.apachat.swipereveallayout.core.SwipeLayout>
 
 
-</LinearLayout>
