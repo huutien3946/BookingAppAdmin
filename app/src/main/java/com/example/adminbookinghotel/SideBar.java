@@ -57,8 +57,6 @@ public class SideBar extends AppCompatActivity implements NavigationView.OnNavig
         progressDialog.setMessage("Log Out...");
 
         initNavigationDrawer();
-
-
         disPlayProfile();
     }
 
@@ -111,7 +109,8 @@ public class SideBar extends AppCompatActivity implements NavigationView.OnNavig
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         Menu nav_Menu = navigationView.getMenu();
         nav_Menu.findItem(R.id.add_staff).setEnabled(false);
-        nav_Menu.findItem(R.id.add_room).setEnabled(false);
+        nav_Menu.findItem(R.id.list_admin).setEnabled(false);
+        nav_Menu.findItem(R.id.list_customer).setEnabled(false);
     }
 
     @Override
@@ -120,25 +119,21 @@ public class SideBar extends AppCompatActivity implements NavigationView.OnNavig
         switch (item.getItemId()){
 
             case R.id.account:
-                Intent intent = new Intent(this, Account.class);
-                startActivity(intent);
+                startActivity(new Intent(this,Account.class));
                 break;
 
             case R.id.add_staff:
-                Intent intent1 = new Intent(this, AddStaff.class);
-                startActivity(intent1);
+                startActivity(new Intent(this,AddStaff.class));
                 this.finish();
                 break;
 
             case R.id.list_admin:
-                Intent intent2 = new Intent(this, ListAdmin.class);
-                startActivity(intent2);
+                startActivity(new Intent(this,ListAdmin.class));
                 this.finish();
                 break;
 
             case R.id.list_customer:
-                Intent intent3 = new Intent(this, ListCustomer.class);
-                startActivity(intent3);
+                startActivity(new Intent(this,ListCustomer.class));
                 this.finish();
                 break;
 
