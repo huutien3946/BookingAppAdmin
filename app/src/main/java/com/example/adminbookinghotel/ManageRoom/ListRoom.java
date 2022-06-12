@@ -1,4 +1,4 @@
-package com.example.adminbookinghotel;
+package com.example.adminbookinghotel.ManageRoom;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import com.example.adminbookinghotel.Adapter.RoomAdapter;
 import com.example.adminbookinghotel.Model.Room;
+import com.example.adminbookinghotel.R;
+import com.example.adminbookinghotel.SideBar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -21,7 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeAdmin extends SideBar {
+public class ListRoom extends SideBar {
 
     private RecyclerView rcvRoom;
     private RoomAdapter mRoomAdapter;
@@ -31,7 +33,7 @@ public class HomeAdmin extends SideBar {
         super.onCreate(savedInstanceState);
 
         LayoutInflater inflater = LayoutInflater.from(this);
-        View v = inflater.inflate(R.layout.activity_home_admin, null, false);
+        View v = inflater.inflate(R.layout.activity_list_room, null, false);
         mDraweLayout.addView(v, 0);
 
         initUI();

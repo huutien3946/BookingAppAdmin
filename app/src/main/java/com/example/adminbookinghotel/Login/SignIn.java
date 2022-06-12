@@ -14,7 +14,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.adminbookinghotel.HomeAdmin;
+import com.example.adminbookinghotel.ManageRoom.ListRoom;
 import com.example.adminbookinghotel.Model.UserAdmin;
 import com.example.adminbookinghotel.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -134,7 +134,7 @@ public class SignIn extends AppCompatActivity {
                 }
                 progressDialog.dismiss();
                 if (exist == true) {
-                    Intent intent = new Intent(SignIn.this, HomeAdmin.class);
+                    Intent intent = new Intent(SignIn.this, ListRoom.class);
                     startActivity(intent);
                     finish();
                 } else {

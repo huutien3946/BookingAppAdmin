@@ -17,6 +17,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.adminbookinghotel.Login.SignIn;
+import com.example.adminbookinghotel.ManageAccount.AddStaff;
+import com.example.adminbookinghotel.ManageAccount.ListAdmin;
+import com.example.adminbookinghotel.ManageAccount.ListCustomer;
+import com.example.adminbookinghotel.ManageRoom.AddRoom;
+import com.example.adminbookinghotel.ManageRoom.ListRoom;
 import com.example.adminbookinghotel.Model.UserAdmin;
 import com.example.adminbookinghotel.Profile.Account;
 import com.google.android.material.navigation.NavigationView;
@@ -120,30 +125,31 @@ public class SideBar extends AppCompatActivity implements NavigationView.OnNavig
 
             case R.id.account:
                 startActivity(new Intent(this,Account.class));
+                this.finish();
                 break;
 
             case R.id.add_staff:
-                startActivity(new Intent(this,AddStaff.class));
+                startActivity(new Intent(this, AddStaff.class));
                 this.finish();
                 break;
 
             case R.id.list_admin:
-                startActivity(new Intent(this,ListAdmin.class));
+                startActivity(new Intent(this, ListAdmin.class));
                 this.finish();
                 break;
 
             case R.id.list_customer:
-                startActivity(new Intent(this,ListCustomer.class));
+                startActivity(new Intent(this, ListCustomer.class));
                 this.finish();
                 break;
 
             case R.id.list_room:
-                startActivity(new Intent(this,HomeAdmin.class));
+                startActivity(new Intent(this, ListRoom.class));
                 this.finish();
                 break;
 
             case R.id.add_room:
-                startActivity(new Intent(this,AddRoom.class));
+                startActivity(new Intent(this, AddRoom.class));
                 this.finish();
                 break;
 

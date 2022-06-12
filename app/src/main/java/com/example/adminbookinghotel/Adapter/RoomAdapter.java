@@ -18,7 +18,7 @@ import com.apachat.swipereveallayout.core.SwipeLayout;
 import com.apachat.swipereveallayout.core.ViewBinder;
 import com.example.adminbookinghotel.R;
 import com.example.adminbookinghotel.Model.Room;
-import com.example.adminbookinghotel.UpdateRoom;
+import com.example.adminbookinghotel.ManageRoom.UpdateRoom;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

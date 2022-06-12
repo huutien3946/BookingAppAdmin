@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/PrimaryColor"
     android:orientation="vertical"
-    tools:context=".AddStaff">
+    tools:context=".ManageAccount.AddStaff">
 
     <TextView
         android:id="@+id/textView"

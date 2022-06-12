@@ -1,4 +1,4 @@
-package com.example.adminbookinghotel;
+package com.example.adminbookinghotel.ManageAccount;
 
 import androidx.annotation.NonNull;
 
@@ -16,7 +16,10 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.adminbookinghotel.Adapter.CategoryAdapter;
+import com.example.adminbookinghotel.ManageRoom.ListRoom;
 import com.example.adminbookinghotel.Model.Category;
+import com.example.adminbookinghotel.R;
+import com.example.adminbookinghotel.SideBar;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -164,7 +167,7 @@ public class AddStaff extends SideBar {
                             auth.signOut();
 
                             showToast("Account created successfully.");
-                            startActivity(new Intent(AddStaff.this, HomeAdmin.class));
+                            startActivity(new Intent(AddStaff.this, ListRoom.class));
                             finishAffinity();
                         } else {
                             showToast("Create an account failed");

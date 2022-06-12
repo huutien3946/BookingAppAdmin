@@ -1,21 +1,19 @@
-package com.example.adminbookinghotel;
+package com.example.adminbookinghotel.ManageAccount;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.media.session.PlaybackState;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
 
 import com.example.adminbookinghotel.Adapter.AccountAdapter;
-import com.example.adminbookinghotel.Adapter.ListCustomerAdapter;
 import com.example.adminbookinghotel.Model.UserAdmin;
-import com.example.adminbookinghotel.Model.UserCustomer;
+import com.example.adminbookinghotel.R;
+import com.example.adminbookinghotel.SideBar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,61 +23,65 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListCustomer extends SideBar {
+public class ListAdmin extends SideBar {
 
-    private RecyclerView rcvListCustomer;
-    private ListCustomerAdapter customerAdapter;
-    private List<UserCustomer> listCustomer;
+    private RecyclerView rcvAccountAdmin;
+    private AccountAdapter accountAdapter;
+    private List<UserAdmin> listAdmin;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         LayoutInflater inflater = LayoutInflater.from(this);
-        View v = inflater.inflate(R.layout.activity_list_customer, null, false);
+        View v = inflater.inflate(R.layout.activity_list_admin, null, false);
         mDraweLayout.addView(v, 0);
 
 
-        getListUserFromRealtimeDataBase();
+        getListAdminFromRealtimeDataBase();
         initUi();
+
     }
 
-    private void getListUserFromRealtimeDataBase() {
+    private void getListAdminFromRealtimeDataBase() {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference reference = database.getReference("user");
+        DatabaseReference reference = database.getReference("admin");
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                listCustomer.clear();
+                listAdmin.clear();
                 for(DataSnapshot child : snapshot.getChildren()){
-                    UserCustomer userCustomer = child.getValue(UserCustomer.class);
-                    listCustomer.add(userCustomer);
+                    UserAdmin userAdmin = child.getValue(UserAdmin.class);
+                    listAdmin.add(userAdmin);
                 }
-                customerAdapter.notifyDataSetChanged();
+                accountAdapter.notifyDataSetChanged();
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                showToast("Get list customer Failed");
+                showToast("Get list Admin Failed");
             }
         });
     }
 
-    private void initUi() {
-        listCustomer = new ArrayList<>();
-        rcvListCustomer = findViewById(R.id.rcv_customer);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        rcvListCustomer.setLayoutManager(linearLayoutManager);
-
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
-        rcvListCustomer.addItemDecoration(dividerItemDecoration);
-
-
-        customerAdapter = new ListCustomerAdapter(listCustomer,this);
-        rcvListCustomer.setAdapter(customerAdapter);
-    }
     private void showToast(String mess) {
         Toast.makeText(this,mess,Toast.LENGTH_SHORT);
+    }
+
+    private void initUi() {
+        listAdmin = new ArrayList<>();
+        rcvAccountAdmin = findViewById(R.id.rcv_account);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        rcvAccountAdmin.setLayoutManager(linearLayoutManager);
+
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
+        rcvAccountAdmin.addItemDecoration(dividerItemDecoration);
+
+
+        accountAdapter = new AccountAdapter(listAdmin,this);
+        rcvAccountAdmin.setAdapter(accountAdapter);
+
     }
 }

@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#58CBFF"
-    tools:context=".UpdateRoom">
+    android:background="@color/blanched_almond"
+    tools:context=".ManageRoom.UpdateRoom">
 
     <TextView
         android:id="@+id/tv_UpdateData"
@@ -114,7 +114,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:drawableStart="@drawable/address"
+        android:drawableStart="@drawable/price"
         android:drawablePadding="10dp"
         android:hint="Giá"
         android:inputType="number"

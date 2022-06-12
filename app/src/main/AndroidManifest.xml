@@ -12,10 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AdminBookingHotel" >
         <activity
-            android:name=".ListCustomer"
+            android:name=".ManageAccount.ListCustomer"
             android:exported="false" />
         <activity
-            android:name=".ListAdmin"
+            android:name=".ManageAccount.ListAdmin"
             android:exported="false" />
         <activity
             android:name=".Profile.UpdatePassword"
@@ -24,19 +24,19 @@
             android:name=".Profile.Account"
             android:exported="false" />
         <activity
-            android:name=".UpdateRoom"
+            android:name=".ManageRoom.UpdateRoom"
             android:exported="false" />
         <activity
-            android:name=".AddRoom"
+            android:name=".ManageRoom.AddRoom"
             android:exported="false" />
         <activity
-            android:name=".HomeAdmin"
+            android:name=".ManageRoom.ListRoom"
             android:exported="false" />
         <activity
             android:name=".Login.FogotPassword"
             android:exported="false" />
         <activity
-            android:name=".AddStaff"
+            android:name=".ManageAccount.AddStaff"
             android:exported="false" />
         <activity
             android:name=".Login.SignIn"

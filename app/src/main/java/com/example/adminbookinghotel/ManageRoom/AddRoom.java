@@ -1,4 +1,4 @@
-package com.example.adminbookinghotel;
+package com.example.adminbookinghotel.ManageRoom;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.example.adminbookinghotel.Adapter.CategoryAdapter;
 import com.example.adminbookinghotel.Model.Category;
 import com.example.adminbookinghotel.Model.Room;
+import com.example.adminbookinghotel.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
@@ -351,7 +352,7 @@ public class AddRoom extends AppCompatActivity {
                             }
                         });
                     }
-                    startActivity(new Intent(AddRoom.this,HomeAdmin.class));
+                    startActivity(new Intent(AddRoom.this, ListRoom.class));
                     showToast("Add Room successful");
                     try {
                         Thread.sleep(2000);

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddRoom">
+    android:background="@color/blanched_almond"
+    tools:context=".ManageRoom.AddRoom">
 
     <TextView
         android:id="@+id/tv_addData"
@@ -38,29 +39,30 @@
             android:text="Floor:"
             android:textColor="@color/black"
             android:textSize="20sp" />
+
         <Spinner
             android:id="@+id/spn_floor"
             android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:background="@android:color/transparent"/>
+            android:background="@android:color/transparent" />
 
-<!--        <com.google.android.material.textfield.TextInputLayout-->
-<!--            android:id="@+id/textInputLayout_floor"-->
-<!--            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginStart="10dp"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/tv_addData">-->
+        <!--        <com.google.android.material.textfield.TextInputLayout-->
+        <!--            android:id="@+id/textInputLayout_floor"-->
+        <!--            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginStart="10dp"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/tv_addData">-->
 
-<!--            <AutoCompleteTextView-->
-<!--                android:id="@+id/auto_complete_tang"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:inputType="none" />-->
+        <!--            <AutoCompleteTextView-->
+        <!--                android:id="@+id/auto_complete_tang"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="match_parent"-->
+        <!--                android:inputType="none" />-->
 
-<!--        </com.google.android.material.textfield.TextInputLayout>-->
+        <!--        </com.google.android.material.textfield.TextInputLayout>-->
 
         <TextView
             android:layout_width="wrap_content"
@@ -75,7 +77,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:background="@android:color/transparent"/>
+            android:background="@android:color/transparent" />
     </LinearLayout>
 
     <TextView
@@ -124,7 +126,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:drawableStart="@drawable/address"
+        android:drawableStart="@drawable/price"
         android:drawablePadding="10dp"
         android:hint="Giá"
         android:inputType="number"
@@ -280,8 +282,6 @@
             app:autoSizeTextType="uniform"
             app:backgroundTint="@color/SecondaryColor" />
     </LinearLayout>
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
