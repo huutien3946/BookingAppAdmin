@@ -26,6 +26,7 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountV
     private List<UserAdmin> list;
     private Context context;
 
+
     public AccountAdapter(List<UserAdmin> list, Context context) {
         this.list = list;
         this.context = context;

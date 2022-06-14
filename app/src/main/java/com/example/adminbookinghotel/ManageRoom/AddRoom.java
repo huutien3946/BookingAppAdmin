@@ -312,7 +312,6 @@ public class AddRoom extends SideBar {
           return;
         }
         progressDialog.show();
-
         reference = FirebaseDatabase.getInstance().getReference("hotel");
         StorageReference ImageFolder = FirebaseStorage.getInstance().getReference().child("Room_Images");
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -384,7 +383,6 @@ public class AddRoom extends SideBar {
                     finish();
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 showToast("Add Room Failed");

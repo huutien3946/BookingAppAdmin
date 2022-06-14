@@ -2,6 +2,9 @@ package com.example.adminbookinghotel;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -12,9 +15,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.adminbookinghotel.Adapter.AccountAdapter;
+import com.example.adminbookinghotel.Adapter.ListTypeRoomAdapter;
 import com.example.adminbookinghotel.Login.SignIn;
 import com.example.adminbookinghotel.ManageAccount.AddStaff;
 import com.example.adminbookinghotel.ManageRoom.ListRoom;
+import com.example.adminbookinghotel.Model.Category;
 import com.example.adminbookinghotel.Model.TypeRoom;
 import com.example.adminbookinghotel.Model.UserAdmin;
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,7 +30,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class AddTypeRoom extends SideBar {
@@ -34,6 +42,9 @@ public class AddTypeRoom extends SideBar {
     private DatabaseReference reference;
     private ProgressDialog progressDialog;
 
+    private RecyclerView rcvTypeRoom;
+    private ListTypeRoomAdapter listTypeRoomAdapter;
+    private List<TypeRoom> listTypeRoom;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,10 +53,8 @@ public class AddTypeRoom extends SideBar {
         View v = inflater.inflate(R.layout.activity_add_type_room, null, false);
         mDraweLayout.addView(v, 0);
 
-        edtTypeRoom = findViewById(R.id.edt_typeroom);
-        btnAddTypeRoom = findViewById(R.id.btn_add_type_room);
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Adding...");
+        getListTypeRoomFromRealtimeDataBase();
+        initUi();
 
         btnAddTypeRoom.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,6 +62,43 @@ public class AddTypeRoom extends SideBar {
                 clickAdd();
             }
         });
+    }
+
+    private void getListTypeRoomFromRealtimeDataBase() {
+        DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference().child("typeroom");
+        reference1.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                listTypeRoom.clear();
+                for( DataSnapshot child : snapshot.getChildren()){
+                    TypeRoom typeRoom = child.getValue(TypeRoom.class);
+                    listTypeRoom.add(typeRoom);
+                }
+                listTypeRoomAdapter.notifyDataSetChanged();
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+    }
+
+    private void initUi() {
+        edtTypeRoom = findViewById(R.id.edt_typeroom);
+        btnAddTypeRoom = findViewById(R.id.btn_add_type_room);
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Adding...");
+
+        listTypeRoom = new ArrayList<>();
+        rcvTypeRoom = findViewById(R.id.rcv_type_room);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        rcvTypeRoom.setLayoutManager(linearLayoutManager);
+
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
+        rcvTypeRoom.addItemDecoration(dividerItemDecoration);
+
+
+        listTypeRoomAdapter = new ListTypeRoomAdapter(listTypeRoom,this);
+        rcvTypeRoom.setAdapter(listTypeRoomAdapter);
     }
 
     private void clickAdd() {
@@ -85,7 +131,7 @@ public class AddTypeRoom extends SideBar {
                     typeroom.put("type", strTypeRoom);
                     reference.push().setValue(typeroom);
                     progressDialog.dismiss();
-                    startActivity(new Intent(AddTypeRoom.this, ListRoom.class));
+                    startActivity(new Intent(AddTypeRoom.this, AddTypeRoom.class));
                     finish();
                     showToast("Add Type Room successfully.");
                 }

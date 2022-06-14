@@ -34,7 +34,6 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder
 
     private List<Room> mListRoom;
     private Context context;
-
     private ViewBinder viewBinder = new ViewBinder();
 
     public RoomAdapter(Context context, List<Room> mListRoom) {
