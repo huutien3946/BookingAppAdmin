@@ -37,27 +37,19 @@
             android:textSize="20dp"
             android:text="Edit"
             android:textColor="@color/white"/>
-
     </LinearLayout>
 
     <!-- Your main layout here -->
-    <TableLayout
+
+    <TextView
+        android:id="@+id/tv_item_type_room"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TableRow>
-            <TextView
-                android:id="@+id/tv_item_type_room"
-                android:layout_width="180dp"
-                android:layout_height="50dp"
-                android:text="type room"
-                android:gravity="center"
-                android:paddingStart="5dp"
-                android:textColor="@color/gray"
-                android:textSize="15sp" />
-
-        </TableRow>
-    </TableLayout>
+        android:layout_height="50dp"
+        android:text="type room"
+        android:gravity="center"
+        android:paddingStart="5dp"
+        android:textColor="@color/gray"
+        android:textSize="15sp" />
 </com.apachat.swipereveallayout.core.SwipeLayout>
 
 

@@ -1,5 +1,6 @@
 package com.example.adminbookinghotel.Model;
 
+
 public class TypeRoom {
     private String type;
 

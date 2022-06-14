@@ -130,9 +130,8 @@ public class AddTypeRoom extends SideBar {
                     Map<String, Object> typeroom = new HashMap<>();
                     typeroom.put("type", strTypeRoom);
                     reference.push().setValue(typeroom);
+                    edtTypeRoom.setText("");
                     progressDialog.dismiss();
-                    startActivity(new Intent(AddTypeRoom.this, AddTypeRoom.class));
-                    finish();
                     showToast("Add Type Room successfully.");
                 }
             }

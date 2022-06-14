@@ -12,7 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AdminBookingHotel">
         <activity
-            android:name=".AddTypeRoom"
+            android:name=".UpdateTypeRoom"
+            android:exported="false" />
+        <activity
+            android:name=".Login.SignIn"
             android:exported="false" />
         <activity
             android:name=".ManageAccount.ListCustomer"
@@ -42,7 +45,7 @@
             android:name=".ManageAccount.AddStaff"
             android:exported="false" />
         <activity
-            android:name=".Login.SignIn"
+            android:name=".AddTypeRoom"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
