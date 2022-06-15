@@ -60,6 +60,7 @@ public class ListCustomerAdapter extends RecyclerView.Adapter<ListCustomerAdapte
                             UserCustomer userCustomer1 = child.getValue(UserCustomer.class);
                             if (userCustomer1.getEmail().equals(userCustomer.getEmail())) {
                                 reference.child(child.getKey()).removeValue();
+
                                 Toast.makeText(v.getContext(), "Delete is successful", Toast.LENGTH_SHORT).show();
                                 break;
                             }
@@ -73,6 +74,8 @@ public class ListCustomerAdapter extends RecyclerView.Adapter<ListCustomerAdapte
                 });
             }
         });
+
+
     }
 
     @Override

@@ -96,8 +96,6 @@ public class UpdateTypeRoom extends AppCompatActivity {
                     typeroom.put("type", strNewTypeRoom);
                     reference.child(key).setValue(typeroom);
                     updateListRoom(strOldTypeRoom,strNewTypeRoom);
-
-
                     startActivity(new Intent(UpdateTypeRoom.this,AddTypeRoom.class));
                     finish();
                     progressDialog.dismiss();
