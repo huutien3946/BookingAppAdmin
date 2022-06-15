@@ -153,6 +153,11 @@ public class SideBar extends AppCompatActivity implements NavigationView.OnNavig
                 this.finish();
                 break;
 
+            case R.id.list_review:
+                startActivity(new Intent(this, ListReview.class));
+                this.finish();
+                break;
+
             case R.id.add_room:
                 startActivity(new Intent(this, AddRoom.class));
                 this.finish();

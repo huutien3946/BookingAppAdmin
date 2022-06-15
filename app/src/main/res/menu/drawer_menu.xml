@@ -35,10 +35,7 @@
 
     <item android:title="Manage Hotel">
         <menu>
-            <item
-                android:id="@+id/list_room"
-                android:icon="@drawable/add2"
-                android:title="List Room" />
+
             <item
                 android:id="@+id/add_room"
                 android:icon="@drawable/add2"
@@ -47,6 +44,14 @@
                 android:id="@+id/add_type_room"
                 android:icon="@drawable/add2"
                 android:title="Add Type Room" />
+            <item
+                android:id="@+id/list_room"
+                android:icon="@drawable/add2"
+                android:title="List Room" />
+            <item
+                android:id="@+id/list_review"
+                android:icon="@drawable/add2"
+                android:title="List Review" />
         </menu>
     </item>
 

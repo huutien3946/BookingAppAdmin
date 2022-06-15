@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.apachat.swipereveallayout.core.SwipeLayout;
+import com.example.adminbookinghotel.Model.Review;
+import com.example.adminbookinghotel.Model.Room;
 import com.example.adminbookinghotel.Model.UserAdmin;
 import com.example.adminbookinghotel.Model.UserCustomer;
 import com.example.adminbookinghotel.R;
@@ -60,7 +62,7 @@ public class ListCustomerAdapter extends RecyclerView.Adapter<ListCustomerAdapte
                             UserCustomer userCustomer1 = child.getValue(UserCustomer.class);
                             if (userCustomer1.getEmail().equals(userCustomer.getEmail())) {
                                 reference.child(child.getKey()).removeValue();
-
+                                DeleteReview(userCustomer1.getEmail());
                                 Toast.makeText(v.getContext(), "Delete is successful", Toast.LENGTH_SHORT).show();
                                 break;
                             }
@@ -73,6 +75,26 @@ public class ListCustomerAdapter extends RecyclerView.Adapter<ListCustomerAdapte
                     }
                 });
             }
+
+            private void DeleteReview(String name) {
+                DatabaseReference reviewRef = FirebaseDatabase.getInstance().getReference("review");
+                reviewRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot child : snapshot.getChildren()){
+                            Review review = child.getValue(Review.class);
+                            if(review.getName().equals(name)){
+                                reviewRef.child(child.getKey()).removeValue();
+                            }
+                        }
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }
+
         });
 
 
