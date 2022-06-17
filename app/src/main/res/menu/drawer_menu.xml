@@ -52,6 +52,10 @@
                 android:id="@+id/list_review"
                 android:icon="@drawable/add2"
                 android:title="List Review" />
+            <item
+                android:id="@+id/list_ticket"
+                android:icon="@drawable/add2"
+                android:title="List Ticket" />
         </menu>
     </item>
 

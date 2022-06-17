@@ -62,7 +62,7 @@ public class ListCustomerAdapter extends RecyclerView.Adapter<ListCustomerAdapte
                             UserCustomer userCustomer1 = child.getValue(UserCustomer.class);
                             if (userCustomer1.getEmail().equals(userCustomer.getEmail())) {
                                 reference.child(child.getKey()).removeValue();
-                                DeleteReview(userCustomer1.getEmail());
+                                DeleteReview(child.getKey());
                                 Toast.makeText(v.getContext(), "Delete is successful", Toast.LENGTH_SHORT).show();
                                 break;
                             }
@@ -76,14 +76,13 @@ public class ListCustomerAdapter extends RecyclerView.Adapter<ListCustomerAdapte
                 });
             }
 
-            private void DeleteReview(String name) {
+            private void DeleteReview(String email) {
                 DatabaseReference reviewRef = FirebaseDatabase.getInstance().getReference("review");
                 reviewRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         for (DataSnapshot child : snapshot.getChildren()){
-                            Review review = child.getValue(Review.class);
-                            if(review.getName().equals(name)){
+                            if(child.getKey().equals(email)){
                                 reviewRef.child(child.getKey()).removeValue();
                             }
                         }

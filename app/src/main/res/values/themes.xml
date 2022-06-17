@@ -18,4 +18,12 @@
         <item name="colorControlNormal">@color/light_grey</item>
         <item name="colorControlActivated">#B8B844</item>
     </style>
+
+    <style name="NewTheme">
+        <!-- Customized theme. -->
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">15dp</item>
+        <item name="android:textSize">25dp</item>
+    </style>
 </resources>

@@ -62,7 +62,7 @@ public class ListReviewAdapter extends RecyclerView.Adapter<ListReviewAdapter.Li
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         for (DataSnapshot child : snapshot.getChildren()) {
                             Review review1 = child.getValue(Review.class);
-                            if (review1.getName().equals(review.getName())) {
+                            if (review1.getEmail().equals(review.getEmail())) {
                                 reference.child(child.getKey()).removeValue();
                                 Toast.makeText(v.getContext(), "Delete is successful", Toast.LENGTH_LONG).show();
                                 break;

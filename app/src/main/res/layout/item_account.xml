@@ -31,11 +31,11 @@
     </LinearLayout>
 
     <!-- Your main layout here -->
-    <TableLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TableRow>
+
             <TextView
                 android:id="@+id/tv_email_account"
                 android:layout_width="180dp"
@@ -73,8 +73,8 @@
                 android:text="1234567890"
                 android:textColor="@color/gray"
                 android:textSize="15dp" />
-        </TableRow>
-    </TableLayout>
+
+    </LinearLayout>
 </com.apachat.swipereveallayout.core.SwipeLayout>
 
 

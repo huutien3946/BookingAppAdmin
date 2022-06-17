@@ -1,16 +1,17 @@
 package com.example.adminbookinghotel.Model;
 
 public class Review {
-    private String name,review, date, star;
+    private String name,review, date, star,email;
 
     public Review() {
     }
 
-    public Review(String name, String review, String date, String star) {
+    public Review(String name, String review, String date, String star, String email) {
         this.name = name;
         this.review = review;
         this.date = date;
         this.star = star;
+        this.email = email;
     }
 
     public String getName() {
@@ -43,5 +44,13 @@ public class Review {
 
     public void setStar(String star) {
         this.star = star;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

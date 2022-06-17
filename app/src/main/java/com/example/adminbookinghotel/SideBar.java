@@ -22,6 +22,7 @@ import com.example.adminbookinghotel.ManageAccount.ListAdmin;
 import com.example.adminbookinghotel.ManageAccount.ListCustomer;
 import com.example.adminbookinghotel.ManageRoom.AddRoom;
 import com.example.adminbookinghotel.ManageRoom.ListRoom;
+import com.example.adminbookinghotel.ManageRoom.ListTicket;
 import com.example.adminbookinghotel.Model.UserAdmin;
 import com.example.adminbookinghotel.Profile.Account;
 import com.google.android.material.navigation.NavigationView;
@@ -155,6 +156,11 @@ public class SideBar extends AppCompatActivity implements NavigationView.OnNavig
 
             case R.id.list_review:
                 startActivity(new Intent(this, ListReview.class));
+                this.finish();
+                break;
+
+            case R.id.list_ticket:
+                startActivity(new Intent(this, ListTicket.class));
                 this.finish();
                 break;
 

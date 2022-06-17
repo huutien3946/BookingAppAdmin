@@ -335,6 +335,24 @@ public class AddRoom extends SideBar {
                 else{
                     Room room = new Room(strFloor, strTypeRoom, strRoomNumber, strMoTa, strPrice,"","","","");
                     reference.child(strRoomNumber).setValue(room);
+                    DatabaseReference totalroomRef = FirebaseDatabase.getInstance().getReference().child("total room");
+                    totalroomRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            int cout = 0;
+                            for (DataSnapshot child : snapshot.getChildren()){
+                                if(child.getKey().equals(strTypeRoom)) {
+                                    cout = child.getValue(Integer.class);
+                                }
+                            }
+                            cout++;
+                            totalroomRef.child(strTypeRoom).setValue(cout);
+                        }
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
                     for( int i = 0; i < 4; i++){
 
                         Uri uri = ImageList.get(i);
