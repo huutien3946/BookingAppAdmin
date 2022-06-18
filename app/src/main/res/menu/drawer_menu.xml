@@ -23,12 +23,12 @@
 
             <item
                 android:id="@+id/list_admin"
-                android:icon="@drawable/add2"
+                android:icon="@drawable/admin"
                 android:title="List Admin" />
 
             <item
                 android:id="@+id/list_customer"
-                android:icon="@drawable/add2"
+                android:icon="@drawable/user"
                 android:title="List Customer" />
         </menu>
     </item>
@@ -42,34 +42,22 @@
                 android:title="Add Room" />
             <item
                 android:id="@+id/add_type_room"
-                android:icon="@drawable/add2"
-                android:title="Add Type Room" />
+                android:icon="@drawable/bed"
+                android:title="Room Types" />
             <item
                 android:id="@+id/list_room"
-                android:icon="@drawable/add2"
-                android:title="List Room" />
+                android:icon="@drawable/room"
+                android:title="Rooms" />
             <item
                 android:id="@+id/list_review"
-                android:icon="@drawable/add2"
-                android:title="List Review" />
+                android:icon="@drawable/review"
+                android:title="Reviews" />
             <item
                 android:id="@+id/list_ticket"
-                android:icon="@drawable/add2"
-                android:title="List Ticket" />
+                android:icon="@drawable/ticket"
+                android:title="Tickets" />
         </menu>
     </item>
 
-    <item android:title="another function">
-        <menu>
-            <item
-                android:id="@+id/AppInfo"
-                android:icon="@drawable/info"
-                android:title="Information app" />
-            <item
-                android:id="@+id/Exit"
-                android:icon="@drawable/shutdown"
-                android:title="Exit" />
-        </menu>
-    </item>
 
 </menu>

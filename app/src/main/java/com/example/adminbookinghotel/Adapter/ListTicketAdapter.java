@@ -1,9 +1,12 @@
 package com.example.adminbookinghotel.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -11,9 +14,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.apachat.swipereveallayout.core.SwipeLayout;
+import com.example.adminbookinghotel.ManageRoom.ListTicket;
 import com.example.adminbookinghotel.Model.Ticket;
 import com.example.adminbookinghotel.Model.UserCustomer;
 import com.example.adminbookinghotel.R;
+import com.example.adminbookinghotel.TicketDetail;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,6 +28,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Objects;
 
 public class ListTicketAdapter extends RecyclerView.Adapter<ListTicketAdapter.ListTicketHolder>{
 
@@ -43,6 +49,7 @@ public class ListTicketAdapter extends RecyclerView.Adapter<ListTicketAdapter.Li
 
     @Override
     public void onBindViewHolder(@NonNull ListTicketHolder holder, int position) {
+
         Ticket ticket = list.get(position);
         if (ticket == null) {
             return;
@@ -62,7 +69,7 @@ public class ListTicketAdapter extends RecyclerView.Adapter<ListTicketAdapter.Li
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         for (DataSnapshot child : snapshot.getChildren()) {
                             Ticket ticket1 = child.getValue(Ticket.class);
-                            if (ticket1.getEmail().equals(ticket.getEmail())) {
+                            if (ticket1.getEmail().equals(ticket.getEmail()) && ticket1.getDatecome().equals(ticket.getDatecome()) && ticket1.getDateleave().equals(ticket.getDateleave())) {
                                 reference.child(child.getKey()).removeValue();
                                 DeleteBooking(ticket.getEmail(), ticket.getTyperoom(),ticket.getDatecome(), ticket.getStaydate());
                                 Toast.makeText(v.getContext(), "Delete is successful", Toast.LENGTH_SHORT).show();
@@ -91,20 +98,26 @@ public class ListTicketAdapter extends RecyclerView.Adapter<ListTicketAdapter.Li
                 for(int i= 0 ; i<n; i++){
                     calendar.set(year, month - 1, day + i);
                     String date = simpleDateFormat.format(calendar.getTime());
-
+                    Log.e("vao delte",date + " email: "+ ticket.getEmail());
                     DatabaseReference bookingRef = reference.child(date);
-                    bookingRef.child(date).addListenerForSingleValueEvent(new ValueEventListener() {
+                    bookingRef.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            for (DataSnapshot child : snapshot.getChildren())
-                            {
-                                Ticket ticket1 = child.getValue(Ticket.class);
-                                if(ticket1.getEmail().equals(email)){
-                                    bookingRef.child(child.getKey()).removeValue();
+                            if (snapshot.exists()){
+                                for (DataSnapshot child : snapshot.getChildren())
+                                {
+                                    Ticket ticket1 = child.getValue(Ticket.class);
+                                    Log.e("vao if",date + " email: "+ ticket1.getEmail());
+                                    assert ticket1 != null;
+                                    if(ticket1.getEmail().equals(email)){
+                                        bookingRef.child(child.getKey()).removeValue();
+                                    }
                                 }
+                            }else{
+                                Log.e("vao else",date);
+
                             }
                         }
-
                         @Override
                         public void onCancelled(@NonNull DatabaseError error) {
 
@@ -113,6 +126,12 @@ public class ListTicketAdapter extends RecyclerView.Adapter<ListTicketAdapter.Li
 
                 }
             }
+        });
+
+        holder.liner_ticket.setOnClickListener(v -> {
+            Intent intent = new Intent(context, TicketDetail.class);
+            intent.putExtra("clickTicket", ticket);
+            context.startActivity(intent);
         });
 
     }
@@ -132,11 +151,12 @@ public class ListTicketAdapter extends RecyclerView.Adapter<ListTicketAdapter.Li
         private TextView tvEmail;
         private TextView tvDelete;
         private SwipeLayout swipeLayout;
+        private LinearLayout liner_ticket;
 
         public ListTicketHolder(@NonNull View itemView) {
             super(itemView);
 
-
+            liner_ticket = itemView.findViewById(R.id.linear_ticket);
             swipeLayout = itemView.findViewById(R.id.swipeTicket);
             tvDateCome = itemView.findViewById(R.id.ChkIn);
             tvDateLeave = itemView.findViewById(R.id.ChkOut);

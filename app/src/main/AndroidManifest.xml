@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AdminBookingHotel">
         <activity
+            android:name=".TicketDetail"
+            android:exported="false" />
+        <activity
             android:name=".ManageRoom.ListTicket"
             android:exported="false" />
         <activity

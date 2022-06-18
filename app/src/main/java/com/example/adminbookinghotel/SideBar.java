@@ -95,7 +95,6 @@ public class SideBar extends AppCompatActivity implements NavigationView.OnNavig
                     }
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
             }
@@ -182,13 +181,6 @@ public class SideBar extends AppCompatActivity implements NavigationView.OnNavig
                 progressDialog.dismiss();
                 break;
 
-            case R.id.AppInfo:
-                break;
-
-            case R.id.Exit:
-                finishAffinity();
-                System.exit(0);
-                break;
         }
         return false;
     }

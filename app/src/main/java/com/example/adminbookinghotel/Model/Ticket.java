@@ -3,12 +3,12 @@ package com.example.adminbookinghotel.Model;
 import java.io.Serializable;
 
 public class Ticket implements Serializable {
-    private String datecome, dateleave, typeroom, email, name, phone, staydate;
+    private String datecome, dateleave, typeroom, email, name, phone, staydate, amount, currentdate;
 
     public Ticket() {
     }
 
-    public Ticket(String datecome, String dateleave, String typeroom, String email, String name, String phone, String staydate) {
+    public Ticket(String datecome, String dateleave, String typeroom, String email, String name, String phone, String staydate, String amount, String currentdate) {
         this.datecome = datecome;
         this.dateleave = dateleave;
         this.typeroom = typeroom;
@@ -16,6 +16,8 @@ public class Ticket implements Serializable {
         this.name = name;
         this.phone = phone;
         this.staydate = staydate;
+        this.amount = amount;
+        this.currentdate = currentdate;
     }
 
     public String getDatecome() {
@@ -72,5 +74,21 @@ public class Ticket implements Serializable {
 
     public void setStaydate(String staydate) {
         this.staydate = staydate;
+    }
+
+    public String getAmount() {
+        return amount;
+    }
+
+    public void setAmount(String amount) {
+        this.amount = amount;
+    }
+
+    public String getCurrentdate() {
+        return currentdate;
+    }
+
+    public void setCurrentdate(String currentdate) {
+        this.currentdate = currentdate;
     }
 }

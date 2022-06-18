@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.apachat.swipereveallayout.core.SwipeLayout;
 import com.example.adminbookinghotel.Model.Review;
 import com.example.adminbookinghotel.Model.Room;
+import com.example.adminbookinghotel.Model.Ticket;
 import com.example.adminbookinghotel.Model.UserAdmin;
 import com.example.adminbookinghotel.Model.UserCustomer;
 import com.example.adminbookinghotel.R;
@@ -63,15 +64,35 @@ public class ListCustomerAdapter extends RecyclerView.Adapter<ListCustomerAdapte
                             if (userCustomer1.getEmail().equals(userCustomer.getEmail())) {
                                 reference.child(child.getKey()).removeValue();
                                 DeleteReview(child.getKey());
+//                                DeleteTicket(userCustomer.getEmail());
                                 Toast.makeText(v.getContext(), "Delete is successful", Toast.LENGTH_SHORT).show();
                                 break;
+                            }
+                        }
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Toast.makeText(v.getContext(), "Warning!", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+
+            private void DeleteTicket(String email) {
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("ticket booking");
+                reference.addListenerForSingleValueEvent(new ValueEventListener(){
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot child : snapshot.getChildren()) {
+                            Ticket ticket1 = child.getValue(Ticket.class);
+                            if (ticket1.getEmail().equals(email)) {
+                                reference.child(child.getKey()).removeValue();
                             }
                         }
                     }
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-                        Toast.makeText(v.getContext(), "Warning!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Warning!", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -89,14 +110,10 @@ public class ListCustomerAdapter extends RecyclerView.Adapter<ListCustomerAdapte
                     }
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-
                     }
                 });
             }
-
         });
-
-
     }
 
     @Override
