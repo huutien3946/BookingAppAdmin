@@ -18,7 +18,6 @@ public class TicketDetail extends AppCompatActivity {
     private Button btnBack;
 
     private Ticket ticket;
-//test
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
