@@ -13,7 +13,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 public class TicketDetail extends AppCompatActivity {
-
     private TextView tvTypeRoom, tvDateCome, tvDateLeave, tvStayDate, tvAmount, tvEmail, tvName, tvPhone, tvCurrentDate;
     private Button btnBack;
 

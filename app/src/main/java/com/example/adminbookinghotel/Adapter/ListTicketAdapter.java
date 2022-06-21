@@ -59,7 +59,6 @@ public class ListTicketAdapter extends RecyclerView.Adapter<ListTicketAdapter.Li
         holder.tvDateCome.setText(ticket.getDatecome());
         holder.tvDateLeave.setText(ticket.getDateleave());
         holder.tvTypeRoom.setText(ticket.getTyperoom());
-
         holder.tvDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
