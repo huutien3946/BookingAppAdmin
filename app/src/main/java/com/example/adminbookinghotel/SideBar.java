@@ -47,6 +47,7 @@ public class SideBar extends AppCompatActivity implements NavigationView.OnNavig
     private ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+//        xong do an
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_side_bar);
 
