@@ -1,7 +1,9 @@
 package com.example.adminbookinghotel.Adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +43,7 @@ public class ListReviewAdapter extends RecyclerView.Adapter<ListReviewAdapter.Li
         return new ListReviewAdapter.ListReviewHolder(view);
     }
 
+    @SuppressLint("ResourceAsColor")
     @Override
     public void onBindViewHolder(@NonNull ListReviewHolder holder, int position) {
 
@@ -53,6 +56,12 @@ public class ListReviewAdapter extends RecyclerView.Adapter<ListReviewAdapter.Li
         holder.date.setText(review.getDate());
         holder.review.setText(review.getReview());
         holder.star.setRating( Float.parseFloat(review.getStar()));
+        if(!review.isStatus()){
+            holder.swipeLayout.setBackgroundColor(Color.RED);
+        }else{
+            holder.swipeLayout.setBackgroundColor(R.color.indian_red);
+
+        }
         holder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,7 +72,12 @@ public class ListReviewAdapter extends RecyclerView.Adapter<ListReviewAdapter.Li
                         for (DataSnapshot child : snapshot.getChildren()) {
                             Review review1 = child.getValue(Review.class);
                             if (review1.getEmail().equals(review.getEmail())) {
-                                reference.child(child.getKey()).removeValue();
+//                                reference.child(child.getKey()).removeValue();
+                                if(review1.isStatus()){
+                                    reference.child(child.getKey()).child("status").setValue(false);
+                                }else {
+                                    reference.child(child.getKey()).child("status").setValue(true);
+                                }
                                 Toast.makeText(v.getContext(), "Delete is successful", Toast.LENGTH_LONG).show();
                                 break;
                             }
@@ -95,8 +109,6 @@ public class ListReviewAdapter extends RecyclerView.Adapter<ListReviewAdapter.Li
         private TextView review;
         private TextView delete;
         private SwipeLayout swipeLayout;
-
-
         public ListReviewHolder(@NonNull View itemView) {
             super(itemView);
             swipeLayout = itemView.findViewById(R.id.swipeReview);

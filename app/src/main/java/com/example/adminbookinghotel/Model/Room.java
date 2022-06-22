@@ -5,11 +5,12 @@ import java.io.Serializable;
 public class Room implements Serializable {
     private String floor, typeroom, roomnumber, mota, price;
     private String image1,image2, image3, image4;
+    private boolean status;
 
     public Room() {
     }
 
-    public Room(String floor, String typeroom, String roomnumber, String mota, String price, String image1, String image2, String image3, String image4) {
+    public Room(String floor, String typeroom, String roomnumber, String mota, String price, String image1, String image2, String image3, String image4, boolean status) {
         this.floor = floor;
         this.typeroom = typeroom;
         this.roomnumber = roomnumber;
@@ -19,6 +20,7 @@ public class Room implements Serializable {
         this.image2 = image2;
         this.image3 = image3;
         this.image4 = image4;
+        this.status = status;
     }
 
     public String getFloor() {
@@ -91,5 +93,13 @@ public class Room implements Serializable {
 
     public void setImage4(String image4) {
         this.image4 = image4;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 }

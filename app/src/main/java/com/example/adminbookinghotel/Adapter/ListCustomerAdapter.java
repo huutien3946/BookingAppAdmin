@@ -1,6 +1,8 @@
 package com.example.adminbookinghotel.Adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,6 +44,7 @@ public class ListCustomerAdapter extends RecyclerView.Adapter<ListCustomerAdapte
         return new ListCustomerAdapter.ListCustomerViewHolder(view);
     }
 
+    @SuppressLint("ResourceAsColor")
     @Override
     public void onBindViewHolder(@NonNull ListCustomerViewHolder holder, int position) {
         UserCustomer userCustomer = list.get(position);
@@ -52,6 +55,13 @@ public class ListCustomerAdapter extends RecyclerView.Adapter<ListCustomerAdapte
         holder.email.setText(userCustomer.getEmail());
         holder.phone.setText(userCustomer.getPhone());
         holder.name.setText(userCustomer.getName());
+        if(!userCustomer.isStatus()){
+            holder.swipeLayout.setBackgroundColor(Color.RED);
+        }else{
+            holder.swipeLayout.setBackgroundColor(R.color.indian_red);
+
+        }
+
         holder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,10 +72,15 @@ public class ListCustomerAdapter extends RecyclerView.Adapter<ListCustomerAdapte
                         for (DataSnapshot child : snapshot.getChildren()) {
                             UserCustomer userCustomer1 = child.getValue(UserCustomer.class);
                             if (userCustomer1.getEmail().equals(userCustomer.getEmail())) {
-                                reference.child(child.getKey()).removeValue();
-                                DeleteReview(child.getKey());
+//                                reference.child(child.getKey()).removeValue();
+//                                DeleteReview(child.getKey());
 //                                DeleteTicket(userCustomer.getEmail());
-                                Toast.makeText(v.getContext(), "Delete is successful", Toast.LENGTH_SHORT).show();
+                                if(userCustomer1.isStatus()){
+                                    reference.child(child.getKey()).child("status").setValue(false);
+                                }else {
+                                    reference.child(child.getKey()).child("status").setValue(true);
+                                }
+                                Toast.makeText(v.getContext(), "Update is successful", Toast.LENGTH_SHORT).show();
                                 break;
                             }
                         }

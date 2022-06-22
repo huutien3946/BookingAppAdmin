@@ -163,6 +163,7 @@ public class AddStaff extends SideBar {
                             user.put("name", strHoTen);
                             user.put("phone", strSdt);
                             user.put("permission",mpermission);
+                            user.put("status", true);
                             databaseReference.child(auth.getCurrentUser().getUid()).setValue(user);
                             auth.signOut();
 

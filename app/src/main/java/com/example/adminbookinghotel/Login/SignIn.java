@@ -128,13 +128,19 @@ public class SignIn extends AppCompatActivity {
                 Boolean exist = false;
                 for (DataSnapshot child : snapshot.getChildren()) {
                     UserAdmin userAdmin = child.getValue(UserAdmin.class);
-                    if (userAdmin.getEmail().equals(strEmail)) {
-                        exist = true;
-                        break;
+                    if (userAdmin.getEmail().equals(strEmail))  {
+                        if(userAdmin.isStatus()){
+                            exist = true;
+                            break;
+                        }else {
+                            showToast("Account was banning !!");
+                            progressDialog.dismiss();
+                            return;
+                        }
                     }
                 }
-                progressDialog.dismiss();
 
+                progressDialog.dismiss();
                 if (exist == true) {
                     Intent intent = new Intent(SignIn.this, ListRoom.class);
                     startActivity(intent);
@@ -142,6 +148,7 @@ public class SignIn extends AppCompatActivity {
                 } else {
                     showToast("Wrong UserName or Password!");
                 }
+
             }
 
             @Override

@@ -129,6 +129,7 @@ public class AddTypeRoom extends SideBar {
                 } else {
                     Map<String, Object> typeroom = new HashMap<>();
                     typeroom.put("type", strTypeRoom);
+                    typeroom.put("status", true);
                     reference.push().setValue(typeroom);
                     edtTypeRoom.setText("");
                     progressDialog.dismiss();

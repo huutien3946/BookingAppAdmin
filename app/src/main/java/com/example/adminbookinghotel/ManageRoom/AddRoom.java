@@ -129,7 +129,6 @@ public class AddRoom extends SideBar {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 strTypeRoom = typeAdapter.getItem(position).getType();
-                showToast(typeAdapter.getItem(position).getType());
             }
 
             @Override
@@ -240,8 +239,10 @@ public class AddRoom extends SideBar {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for( DataSnapshot child : snapshot.getChildren()){
-                    Category category = child.getValue(Category.class);
-                    list.add(category);
+                    TypeRoom typeRoom = child.getValue(TypeRoom.class);
+                    if(typeRoom.isStatus()){
+                        list.add(new Category(typeRoom.getType()));
+                    }
                 }
                 typeAdapter.notifyDataSetChanged();
             }
@@ -333,7 +334,7 @@ public class AddRoom extends SideBar {
                     return;
                 }
                 else{
-                    Room room = new Room(strFloor, strTypeRoom, strRoomNumber, strMoTa, strPrice,"","","","");
+                    Room room = new Room(strFloor, strTypeRoom, strRoomNumber, strMoTa, strPrice,"","","","",true);
                     reference.child(strRoomNumber).setValue(room);
                     DatabaseReference totalroomRef = FirebaseDatabase.getInstance().getReference().child("total room");
                     totalroomRef.addListenerForSingleValueEvent(new ValueEventListener() {

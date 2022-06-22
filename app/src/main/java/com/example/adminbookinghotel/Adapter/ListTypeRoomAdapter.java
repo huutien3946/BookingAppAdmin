@@ -1,7 +1,9 @@
 package com.example.adminbookinghotel.Adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,6 +46,7 @@ public class ListTypeRoomAdapter extends RecyclerView.Adapter<ListTypeRoomAdapte
         return new ListTypeRoomAdapter.ListTypeRoomViewHolder(view);
     }
 
+    @SuppressLint("ResourceAsColor")
     @Override
     public void onBindViewHolder(@NonNull ListTypeRoomViewHolder holder, int position) {
 
@@ -53,7 +56,11 @@ public class ListTypeRoomAdapter extends RecyclerView.Adapter<ListTypeRoomAdapte
         }
 
         holder.type.setText(typeRoom.getType());
-
+        if(!typeRoom.isStatus()){
+            holder.swipeLayout.setBackgroundColor(Color.RED);
+        }else{
+            holder.swipeLayout.setBackgroundColor(R.color.indian_red);
+        }
         holder.edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,11 +80,15 @@ public class ListTypeRoomAdapter extends RecyclerView.Adapter<ListTypeRoomAdapte
                         for (DataSnapshot child : snapshot.getChildren()) {
                             TypeRoom typeRoom1 = child.getValue(TypeRoom.class);
                             if (typeRoom1.getType().equals(typeRoom.getType())) {
-                                reference.child(child.getKey()).removeValue();
-
+                                if(typeRoom1.isStatus()){
+                                    reference.child(child.getKey()).child("status").setValue(false);
+                                }else {
+                                    reference.child(child.getKey()).child("status").setValue(true);
+                                }
+//                                reference.child(child.getKey()).removeValue();
                                 //xoa cac phong co cung loai phong da xoa
-                                DeleteRoom(typeRoom.getType());
-                                Toast.makeText(v.getContext(), "Delete is successful", Toast.LENGTH_SHORT).show();
+//                                DeleteRoom(typeRoom.getType());
+                                Toast.makeText(v.getContext(), "Update is successful", Toast.LENGTH_SHORT).show();
                             }
                         }
                     }

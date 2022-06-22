@@ -1,6 +1,10 @@
 package com.example.adminbookinghotel.Adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.renderscript.Sampler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +44,7 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountV
         return new AccountViewHolder(view);
     }
 
+    @SuppressLint("ResourceAsColor")
     @Override
     public void onBindViewHolder(@NonNull AccountViewHolder holder, int position) {
 
@@ -51,6 +56,12 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountV
         holder.email.setText(userAdmin.getEmail());
         holder.phone.setText(userAdmin.getPhone());
         holder.name.setText(userAdmin.getName());
+        if(!userAdmin.isStatus()){
+            holder.swipeLayout.setBackgroundColor(Color.RED);
+        }else{
+            holder.swipeLayout.setBackgroundColor(R.color.indian_red);
+
+        }
         holder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,8 +72,12 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountV
                         for (DataSnapshot child : snapshot.getChildren()) {
                             UserAdmin userAdmin1 = child.getValue(UserAdmin.class);
                             if (userAdmin1.getEmail().equals(userAdmin.getEmail())) {
-                                reference.child(child.getKey()).removeValue();
-                                Toast.makeText(v.getContext(), "Delete is successful", Toast.LENGTH_LONG).show();
+                                if(userAdmin1.isStatus()){
+                                    reference.child(child.getKey()).child("status").setValue(false);
+                                }else {
+                                    reference.child(child.getKey()).child("status").setValue(true);
+                                }
+                                Toast.makeText(v.getContext(), "update is successful", Toast.LENGTH_LONG).show();
                                 break;
                             }
                         }

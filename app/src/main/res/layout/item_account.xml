@@ -23,9 +23,9 @@
             android:layout_height="match_parent"
             android:background="#d2691e"
             android:layout_gravity="center"
-            android:text="Delete"
+            android:text="Enable/Disable"
             android:textColor="@color/white"
-            android:textSize="20dp"
+            android:textSize="18dp"
             android:textAlignment="center"/>
 
     </LinearLayout>
@@ -43,7 +43,7 @@
                 android:text="Email"
                 android:gravity="left|center"
                 android:paddingStart="5dp"
-                android:textColor="@color/gray"
+                android:textColor="@color/black"
                 android:textSize="15sp" />
             <View
                 android:layout_width="1dp"
@@ -57,7 +57,7 @@
                 android:paddingStart="5dp"
                 android:gravity="left|center"
                 android:text="Trịnh Hữu Tiến"
-                android:textColor="@color/gray"
+                android:textColor="@color/black"
                 android:textSize="15dp" />
             <View
                 android:layout_width="1dp"
@@ -71,7 +71,7 @@
                 android:paddingStart="5dp"
                 android:gravity="left|center"
                 android:text="1234567890"
-                android:textColor="@color/gray"
+                android:textColor="@color/black"
                 android:textSize="15dp" />
 
     </LinearLayout>

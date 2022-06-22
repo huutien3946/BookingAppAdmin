@@ -1,7 +1,9 @@
 package com.example.adminbookinghotel.Adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,6 +50,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder
         return new RoomViewHolder(view);
     }
 
+    @SuppressLint("ResourceAsColor")
     @Override
     public void onBindViewHolder(@NonNull RoomViewHolder holder, int position) {
 
@@ -73,6 +76,12 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder
             Picasso.get().load(room.getImage1()).fit().centerCrop().into(holder.imgUrl1);
         }
 
+        if(!room.isStatus()){
+            holder.swipeLayout.setBackgroundColor(Color.RED);
+        }else{
+            holder.swipeLayout.setBackgroundColor(R.color.PrimaryColor);
+        }
+
         holder.tvDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,9 +90,15 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         for (DataSnapshot child : snapshot.getChildren()) {
+                            Room room1 = child.getValue(Room.class);
                             if (child.getKey().equals(room.getRoomnumber())) {
-                                reference.child(child.getKey()).removeValue();
-                                Toast.makeText(v.getContext(), "Delete is successful", Toast.LENGTH_LONG).show();
+//                                reference.child(child.getKey()).removeValue();
+                                if(room1.isStatus()){
+                                    reference.child(child.getKey()).child("status").setValue(false);
+                                }else {
+                                    reference.child(child.getKey()).child("status").setValue(true);
+                                }
+                                Toast.makeText(v.getContext(), "Update is successful", Toast.LENGTH_LONG).show();
                                 break;
                             }
                         }
@@ -134,9 +149,6 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder
             tvType = itemView.findViewById(R.id.tv_type_room);
             tvRoomNb = itemView.findViewById(R.id.tv_room_number);
             imgUrl1 = itemView.findViewById(R.id.img_room);
-
-
-
 
         }
     }

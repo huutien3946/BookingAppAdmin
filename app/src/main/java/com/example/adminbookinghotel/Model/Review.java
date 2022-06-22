@@ -2,16 +2,18 @@ package com.example.adminbookinghotel.Model;
 
 public class Review {
     private String name,review, date, star,email;
+    private boolean status;
 
     public Review() {
     }
 
-    public Review(String name, String review, String date, String star, String email) {
+    public Review(String name, String review, String date, String star, String email, boolean status) {
         this.name = name;
         this.review = review;
         this.date = date;
         this.star = star;
         this.email = email;
+        this.status = status;
     }
 
     public String getName() {
@@ -52,5 +54,13 @@ public class Review {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 }

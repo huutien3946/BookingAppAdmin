@@ -2,17 +2,18 @@ package com.example.adminbookinghotel.Model;
 
 public class UserAdmin {
     private String email, phone, name,image, permission;
-
+    private boolean status;
 
     public UserAdmin() {
     }
 
-    public UserAdmin(String email, String phone, String name, String image, String permission) {
+    public UserAdmin(String email, String phone, String name, String image, String permission, boolean status) {
         this.email = email;
         this.phone = phone;
         this.name = name;
         this.image = image;
         this.permission = permission;
+        this.status = status;
     }
 
     public String getEmail() {
@@ -53,5 +54,13 @@ public class UserAdmin {
 
     public void setPermission(String permission) {
         this.permission = permission;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 }

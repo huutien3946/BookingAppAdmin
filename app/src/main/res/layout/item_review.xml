@@ -23,9 +23,9 @@
             android:layout_height="match_parent"
             android:background="#d2691e"
             android:layout_gravity="center"
-            android:text="Delete"
+            android:text="Enable/Disable"
             android:textColor="@color/white"
-            android:textSize="20dp"
+            android:textSize="18dp"
             android:textAlignment="center"/>
 
     </LinearLayout>

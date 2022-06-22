@@ -49,6 +49,7 @@ public class UpdateRoom extends AppCompatActivity {
     private Button backButton, updateButton;
     private ImageView img_update_1, img_update_2, img_update_3, img_update_4;
     private TextView tv_update_selectImage;
+    private boolean status;
 
 
     private Uri mImageUri;
@@ -201,6 +202,8 @@ public class UpdateRoom extends AppCompatActivity {
 
         tvFloor.setText(room.getFloor());
         tvRoomNb.setText(room.getRoomnumber());
+        status = room.isStatus();
+
 
 
         List<Category> list = new ArrayList<>();
@@ -250,7 +253,7 @@ public class UpdateRoom extends AppCompatActivity {
         progressDialog.show();
         reference = FirebaseDatabase.getInstance().getReference("hotel");
         StorageReference ImageFolder = FirebaseStorage.getInstance().getReference().child("Room_Images");
-        Room room = new Room(strFloor, strTypeRoom, strRoomNb, strMota, strPrice,url1,url2,url3,url4);
+        Room room = new Room(strFloor, strTypeRoom, strRoomNb, strMota, strPrice,url1,url2,url3,url4,status);
         reference.child(strRoomNb).setValue(room);
         if(ImageList.size() != 0){
             for( int i = 0; i < 4; i++){

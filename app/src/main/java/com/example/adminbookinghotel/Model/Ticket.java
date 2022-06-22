@@ -4,11 +4,12 @@ import java.io.Serializable;
 
 public class Ticket implements Serializable {
     private String datecome, dateleave, typeroom, email, name, phone, staydate, amount, currentdate;
+    private boolean status;
 
     public Ticket() {
     }
 
-    public Ticket(String datecome, String dateleave, String typeroom, String email, String name, String phone, String staydate, String amount, String currentdate) {
+    public Ticket(String datecome, String dateleave, String typeroom, String email, String name, String phone, String staydate, String amount, String currentdate, boolean status) {
         this.datecome = datecome;
         this.dateleave = dateleave;
         this.typeroom = typeroom;
@@ -18,6 +19,7 @@ public class Ticket implements Serializable {
         this.staydate = staydate;
         this.amount = amount;
         this.currentdate = currentdate;
+        this.status = status;
     }
 
     public String getDatecome() {
@@ -90,5 +92,13 @@ public class Ticket implements Serializable {
 
     public void setCurrentdate(String currentdate) {
         this.currentdate = currentdate;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 }

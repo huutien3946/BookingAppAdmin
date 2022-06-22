@@ -1,7 +1,9 @@
 package com.example.adminbookinghotel.Adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,6 +49,7 @@ public class ListTicketAdapter extends RecyclerView.Adapter<ListTicketAdapter.Li
         return new ListTicketAdapter.ListTicketHolder(view);
     }
 
+    @SuppressLint("ResourceAsColor")
     @Override
     public void onBindViewHolder(@NonNull ListTicketHolder holder, int position) {
 
@@ -56,9 +59,16 @@ public class ListTicketAdapter extends RecyclerView.Adapter<ListTicketAdapter.Li
         }
 
         holder.tvEmail.setText(ticket.getEmail());
+        holder.tvName.setText((ticket.getName()));
         holder.tvDateCome.setText(ticket.getDatecome());
         holder.tvDateLeave.setText(ticket.getDateleave());
         holder.tvTypeRoom.setText(ticket.getTyperoom());
+//        if(!ticket.isStatus()){
+//            holder.swipeLayout.setBackgroundColor(Color.RED);
+//        }else{
+//            holder.swipeLayout.setBackgroundColor(R.color.indian_red);
+//
+//        }
         holder.tvDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,11 +78,25 @@ public class ListTicketAdapter extends RecyclerView.Adapter<ListTicketAdapter.Li
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         for (DataSnapshot child : snapshot.getChildren()) {
                             Ticket ticket1 = child.getValue(Ticket.class);
+
                             if (ticket1.getEmail().equals(ticket.getEmail()) && ticket1.getDatecome().equals(ticket.getDatecome()) && ticket1.getDateleave().equals(ticket.getDateleave())) {
                                 reference.child(child.getKey()).removeValue();
                                 DeleteBooking(ticket.getEmail(), ticket.getTyperoom(),ticket.getDatecome(), ticket.getStaydate());
                                 Toast.makeText(v.getContext(), "Delete is successful", Toast.LENGTH_SHORT).show();
                             }
+
+//                            if (ticket1.getEmail().equals(ticket.getEmail()) && ticket1.getDatecome().equals(ticket.getDatecome()) && ticket1.getDateleave().equals(ticket.getDateleave())) {
+//      //                          reference.child(child.getKey()).removeValue();
+//                                if(ticket1.isStatus()){
+//                                    reference.child(child.getKey()).child("status").setValue(false);
+//                                    DeleteBooking(ticket.getEmail(), ticket.getTyperoom(),ticket.getDatecome(), ticket.getStaydate());
+//
+//                                }else {
+//                                    reference.child(child.getKey()).child("status").setValue(true);
+//
+//                                }
+//                                Toast.makeText(v.getContext(), "Delete is successful", Toast.LENGTH_SHORT).show();
+//                            }
                         }
                     }
 
@@ -148,6 +172,7 @@ public class ListTicketAdapter extends RecyclerView.Adapter<ListTicketAdapter.Li
         private TextView tvDateLeave;
         private TextView tvTypeRoom;
         private TextView tvEmail;
+        private TextView tvName;
         private TextView tvDelete;
         private SwipeLayout swipeLayout;
         private LinearLayout liner_ticket;
@@ -158,6 +183,7 @@ public class ListTicketAdapter extends RecyclerView.Adapter<ListTicketAdapter.Li
             liner_ticket = itemView.findViewById(R.id.linear_ticket);
             swipeLayout = itemView.findViewById(R.id.swipeTicket);
             tvDateCome = itemView.findViewById(R.id.ChkIn);
+            tvName = itemView.findViewById(R.id.tv_name_ticket);
             tvDateLeave = itemView.findViewById(R.id.ChkOut);
             tvTypeRoom = itemView.findViewById(R.id.tv_type_room_ticket);
             tvEmail = itemView.findViewById(R.id.tv_email_ticket);

@@ -79,7 +79,7 @@ public class ListTicket extends SideBar {
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                showToast("Get list Admin Failed");
+                showToast("Get list Ticket Failed");
             }
         });
     }
