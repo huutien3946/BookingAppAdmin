@@ -226,7 +226,6 @@ public class AddRoom extends SideBar {
         typeAdapter = new CategoryAdapter(this, R.layout.item_selected, getListType());
         spnType.setAdapter(typeAdapter);
 
-//        backButton = findViewById(R.id.btn_back);
         addButton = findViewById(R.id.btn_addroom);
 
     }

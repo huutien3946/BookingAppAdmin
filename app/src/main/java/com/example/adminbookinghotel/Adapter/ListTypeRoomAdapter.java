@@ -140,9 +140,6 @@ public class ListTypeRoomAdapter extends RecyclerView.Adapter<ListTypeRoomAdapte
             type = itemView.findViewById(R.id.tv_item_type_room);
             delete = itemView.findViewById(R.id.delete_type_room);
             edit = itemView.findViewById(R.id.update_typeroom);
-
-
-
         }
     }
 }

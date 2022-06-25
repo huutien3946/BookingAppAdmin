@@ -90,8 +90,6 @@ public class UpdateTypeRoom extends AppCompatActivity {
                     return;
                 }
                 else{
-//                    Map<String, Object> typeroom = new HashMap<>();
-//                    typeroom.put("type", strNewTypeRoom);
                     reference.child(key).child("type").setValue(strNewTypeRoom);
                     updateListRoom(strOldTypeRoom,strNewTypeRoom);
                     startActivity(new Intent(UpdateTypeRoom.this, AddTypeRoom.class));
