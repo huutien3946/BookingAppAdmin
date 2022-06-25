@@ -72,7 +72,6 @@ public class SideBar extends AppCompatActivity implements NavigationView.OnNavig
     private void disPlayProfile() {
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-//        userId = auth.getUid();
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("admin");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
