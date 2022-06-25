@@ -16,11 +16,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.apachat.swipereveallayout.core.SwipeLayout;
-import com.example.adminbookinghotel.ManageRoom.ListTicket;
 import com.example.adminbookinghotel.Model.Ticket;
-import com.example.adminbookinghotel.Model.UserCustomer;
 import com.example.adminbookinghotel.R;
-import com.example.adminbookinghotel.TicketDetail;
+import com.example.adminbookinghotel.ManageRoom.TicketDetail;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,7 +28,6 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Objects;
 
 public class ListTicketAdapter extends RecyclerView.Adapter<ListTicketAdapter.ListTicketHolder>{
 
@@ -59,19 +56,22 @@ public class ListTicketAdapter extends RecyclerView.Adapter<ListTicketAdapter.Li
         }
 
         holder.tvEmail.setText(ticket.getEmail());
-        holder.tvName.setText((ticket.getName()));
         holder.tvDateCome.setText(ticket.getDatecome());
         holder.tvDateLeave.setText(ticket.getDateleave());
         holder.tvTypeRoom.setText(ticket.getTyperoom());
-//        if(!ticket.isStatus()){
-//            holder.swipeLayout.setBackgroundColor(Color.RED);
-//        }else{
-//            holder.swipeLayout.setBackgroundColor(R.color.indian_red);
-//
-//        }
+        holder.tvCurrentDate.setText(ticket.getCurrentdate());
+        if(!ticket.isStatus()){
+            holder.swipeLayout.setBackgroundColor(Color.RED);
+        }else{
+            holder.swipeLayout.setBackgroundColor(R.color.indian_red);
+        }
         holder.tvDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(!ticket.isStatus()){
+                    Toast.makeText(v.getContext(), "Ticket is disable", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference("ticket booking");
                 reference.addListenerForSingleValueEvent(new ValueEventListener(){
                     @Override
@@ -79,27 +79,22 @@ public class ListTicketAdapter extends RecyclerView.Adapter<ListTicketAdapter.Li
                         for (DataSnapshot child : snapshot.getChildren()) {
                             Ticket ticket1 = child.getValue(Ticket.class);
 
-                            if (ticket1.getEmail().equals(ticket.getEmail()) && ticket1.getDatecome().equals(ticket.getDatecome()) && ticket1.getDateleave().equals(ticket.getDateleave())) {
-                                reference.child(child.getKey()).removeValue();
-                                DeleteBooking(ticket.getEmail(), ticket.getTyperoom(),ticket.getDatecome(), ticket.getStaydate());
-                                Toast.makeText(v.getContext(), "Delete is successful", Toast.LENGTH_SHORT).show();
-                            }
-
 //                            if (ticket1.getEmail().equals(ticket.getEmail()) && ticket1.getDatecome().equals(ticket.getDatecome()) && ticket1.getDateleave().equals(ticket.getDateleave())) {
-//      //                          reference.child(child.getKey()).removeValue();
-//                                if(ticket1.isStatus()){
-//                                    reference.child(child.getKey()).child("status").setValue(false);
-//                                    DeleteBooking(ticket.getEmail(), ticket.getTyperoom(),ticket.getDatecome(), ticket.getStaydate());
-//
-//                                }else {
-//                                    reference.child(child.getKey()).child("status").setValue(true);
-//
-//                                }
+//                                reference.child(child.getKey()).removeValue();
+//                                DeleteBooking(ticket.getEmail(), ticket.getTyperoom(),ticket.getDatecome(), ticket.getStaydate());
 //                                Toast.makeText(v.getContext(), "Delete is successful", Toast.LENGTH_SHORT).show();
 //                            }
+
+                            if (ticket1.getEmail().equals(ticket.getEmail()) && ticket1.getDatecome().equals(ticket.getDatecome()) && ticket1.getDateleave().equals(ticket.getDateleave())) {
+//                                reference.child(child.getKey()).removeValue();
+                                if(ticket1.isStatus()){
+                                    reference.child(child.getKey()).child("status").setValue(false);
+                                    DeleteBooking(ticket.getEmail(), ticket.getTyperoom(),ticket.getDatecome(), ticket.getStaydate());
+                                    Toast.makeText(v.getContext(), "Disable is successful", Toast.LENGTH_SHORT).show();
+                                }
+                            }
                         }
                     }
-
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
                         Toast.makeText(v.getContext(), "Warning!", Toast.LENGTH_SHORT).show();
@@ -138,7 +133,6 @@ public class ListTicketAdapter extends RecyclerView.Adapter<ListTicketAdapter.Li
                                 }
                             }else{
                                 Log.e("vao else",date);
-
                             }
                         }
                         @Override
@@ -170,9 +164,9 @@ public class ListTicketAdapter extends RecyclerView.Adapter<ListTicketAdapter.Li
 
         private TextView tvDateCome;
         private TextView tvDateLeave;
+        private TextView tvCurrentDate;
         private TextView tvTypeRoom;
         private TextView tvEmail;
-        private TextView tvName;
         private TextView tvDelete;
         private SwipeLayout swipeLayout;
         private LinearLayout liner_ticket;
@@ -183,8 +177,8 @@ public class ListTicketAdapter extends RecyclerView.Adapter<ListTicketAdapter.Li
             liner_ticket = itemView.findViewById(R.id.linear_ticket);
             swipeLayout = itemView.findViewById(R.id.swipeTicket);
             tvDateCome = itemView.findViewById(R.id.ChkIn);
-            tvName = itemView.findViewById(R.id.tv_name_ticket);
             tvDateLeave = itemView.findViewById(R.id.ChkOut);
+            tvCurrentDate = itemView.findViewById(R.id.tv_current_date);
             tvTypeRoom = itemView.findViewById(R.id.tv_type_room_ticket);
             tvEmail = itemView.findViewById(R.id.tv_email_ticket);
             tvDelete = itemView.findViewById(R.id.delete_ticket);

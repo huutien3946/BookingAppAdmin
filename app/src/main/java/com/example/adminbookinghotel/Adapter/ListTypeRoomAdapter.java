@@ -7,7 +7,6 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,12 +14,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.apachat.swipereveallayout.core.SwipeLayout;
-import com.example.adminbookinghotel.Model.Category;
 import com.example.adminbookinghotel.Model.Room;
 import com.example.adminbookinghotel.Model.TypeRoom;
-import com.example.adminbookinghotel.Model.UserAdmin;
 import com.example.adminbookinghotel.R;
-import com.example.adminbookinghotel.UpdateTypeRoom;
+import com.example.adminbookinghotel.ManageRoom.UpdateTypeRoom;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

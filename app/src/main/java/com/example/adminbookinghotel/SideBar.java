@@ -21,6 +21,8 @@ import com.example.adminbookinghotel.ManageAccount.AddStaff;
 import com.example.adminbookinghotel.ManageAccount.ListAdmin;
 import com.example.adminbookinghotel.ManageAccount.ListCustomer;
 import com.example.adminbookinghotel.ManageRoom.AddRoom;
+import com.example.adminbookinghotel.ManageRoom.AddTypeRoom;
+import com.example.adminbookinghotel.ManageRoom.ListReview;
 import com.example.adminbookinghotel.ManageRoom.ListRoom;
 import com.example.adminbookinghotel.ManageRoom.ListTicket;
 import com.example.adminbookinghotel.Model.UserAdmin;

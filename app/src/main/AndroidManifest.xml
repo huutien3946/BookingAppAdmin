@@ -12,19 +12,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AdminBookingHotel">
         <activity
-            android:name=".TicketDetail"
+            android:name=".ManageRoom.TicketDetail"
             android:exported="false" />
         <activity
             android:name=".ManageRoom.ListTicket"
             android:exported="false" />
         <activity
-            android:name=".AddTypeRoom"
+            android:name=".ManageRoom.AddTypeRoom"
             android:exported="false" />
         <activity
-            android:name=".UpdateTypeRoom"
+            android:name=".ManageRoom.UpdateTypeRoom"
             android:exported="false" />
         <activity
-            android:name=".ListReview"
+            android:name=".ManageRoom.ListReview"
             android:exported="false" />
         <activity
             android:name=".ManageAccount.ListCustomer"

@@ -7,7 +7,7 @@
     android:background="@color/blanched_almond"
     android:gravity="top|center"
     android:orientation="vertical"
-    tools:context=".AddTypeRoom">
+    tools:context=".ManageRoom.AddTypeRoom">
 
     <TextView
         android:layout_width="match_parent"

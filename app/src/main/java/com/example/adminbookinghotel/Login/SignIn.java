@@ -133,7 +133,7 @@ public class SignIn extends AppCompatActivity {
                             exist = true;
                             break;
                         }else {
-                            showToast("Account was banning !!");
+                            showToast("Account is being banned !!");
                             progressDialog.dismiss();
                             return;
                         }
