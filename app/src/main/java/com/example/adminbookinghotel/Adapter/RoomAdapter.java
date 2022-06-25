@@ -103,7 +103,6 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder
                             }
                         }
                     }
-
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
                         Toast.makeText(v.getContext(), "Warning!", Toast.LENGTH_LONG).show();
@@ -139,7 +138,6 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder
 
         public RoomViewHolder(@NonNull View itemView) {
             super(itemView);
-
             swipeLayout = itemView.findViewById(R.id.mSwipereveallayout);
             tvDelete = itemView.findViewById(R.id.delete_room);
             tvUpdate = itemView.findViewById(R.id.update_room);
