@@ -27,7 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListReview extends SideBar {
-
+ // hoan thanh do an
     private RecyclerView rcvListReview;
     private ListReviewAdapter reviewAdapter;
     private List<Review> listReview;
