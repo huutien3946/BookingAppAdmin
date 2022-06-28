@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.example.adminbookinghotel.Adapter.CategoryAdapter;
 import com.example.adminbookinghotel.Model.Category;
 import com.example.adminbookinghotel.Model.Room;
+import com.example.adminbookinghotel.Model.TypeRoom;
 import com.example.adminbookinghotel.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -182,8 +183,10 @@ public class UpdateRoom extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for( DataSnapshot child : snapshot.getChildren()){
-                    Category category = child.getValue(Category.class);
-                    list.add(category);
+                    TypeRoom typeRoom = child.getValue(TypeRoom.class);
+                    if(typeRoom.isStatus()){
+                        list.add(new Category(typeRoom.getType()));
+                    }
                 }
                 typeAdapter.notifyDataSetChanged();
             }
